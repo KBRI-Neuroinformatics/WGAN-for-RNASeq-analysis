@@ -1,3 +1,11 @@
+## A practical application of generative adversarial networks for RNA-seq analysis to predict the molecular progress of Alzheimer's disease
+________
+
+### Prerequisites
+__(Create virtual environment)__
+virtualenv WGAN_rnaseq -p python3
+source WGAN_rnaseq/bin/activate
+
 # Create virtual environment
 virtualenv GAN_rnaseq -p python3
 source GAN_rnaseq/bin/activate
