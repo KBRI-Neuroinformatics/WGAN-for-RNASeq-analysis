@@ -8,8 +8,8 @@ __(Create virtual environment)__
 
 
 __(Install packages)__  
->* Default:CPU
->* If you want to install tensorflow with GPU support, please visit tensorflow.org to set up your environment. Then replace tensorflow with tensorflow-gpu in requirements.txt  
+* Default:CPU
+* If you want to install tensorflow with GPU support, please visit tensorflow.org to set up your environment. Then replace tensorflow with tensorflow-gpu in requirements.txt  
 
     pip install -r requirements.txt  
 
