@@ -1,0 +1,11 @@
+# Coverage: 0.8
+mmu01100
+mmu02010
+mmu04721
+mmu04742
+mmu00534
+mmu04140
+mmu04120
+mmu04260
+mmu04392
+mmu04614
