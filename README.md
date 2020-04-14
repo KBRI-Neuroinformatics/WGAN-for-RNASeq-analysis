@@ -1,5 +1,5 @@
 ## A practical application of generative adversarial networks for RNA-seq analysis to predict the molecular progress of Alzheimer's disease
-
+---
 ### [Prerequisites]
 __(Create virtual environment)__
 
@@ -16,3 +16,6 @@ __(Install packages)__
      python main.py --refpath 83.93_reference.tab --genepath DESeq2_htseq/AD7M_over_WT7M_q005_baseMean100_PMean.csv' --datapath DESeq2_htseq/GSE104775_RLD_w_HG.csv  
 
 ### [Analysis using WGAN_for_rnaseq_analysis.ipynb]
+---
+### Reference code
+>https://github.com/luslab/scRNAseq-WGAN-GP/blob/master/scripts/WGAN-GP_minimal.py
