@@ -1,7 +1,5 @@
-
-## A practical application of generative adversarial networks for RNA-seq analysis to predict the molecular progress of Alzheimer's disease 
 [![DOI](https://zenodo.org/badge/255605797.svg)](https://zenodo.org/badge/latestdoi/255605797)
-
+## A practical application of generative adversarial networks for RNA-seq analysis to predict the molecular progress of Alzheimer's disease 
 ---
 ### [Prerequisites]
 * __Create virtual environment__  
