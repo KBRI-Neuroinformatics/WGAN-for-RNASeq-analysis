@@ -20,7 +20,7 @@
           python main.py --refpath 83.93_reference.tab --genepath DESeq2_htseq/AD7M_over_WT7M_q005_baseMean100_PMean.csv' --datapath DESeq2_htseq/GSE104775_RLD_w_HG.csv  
 
     * __--refpath__ and __--genepath__ are used to obtain filtered gene information result from DEG analysis
-    * __--datapath__ is the path of the merged data for htseq results of individual samples, and this file is used as input data
+    * __--datapath__ is the path of the merged data for HTSeq results of individual samples, and this file is used as input data
     * After running main.py, you can get two .npz files(data_split.npz and weights/training_results.npz) and weights folder, and these output files will be used in following analysis part   
     
 * __Analysis using WGAN_for_rnaseq_analysis.ipynb__
