@@ -25,18 +25,18 @@
     
 * __Analysis using WGAN_for_rnaseq_analysis.ipynb__
     ![image](https://user-images.githubusercontent.com/57948381/80566407-e64a1e80-8a2d-11ea-8ca7-a5ffaeb193cf.png)
-    * The left figure shows the loss graph for training and the right figure shows average correlation of generated samples during training. High correlation means that the generater can create realistic samples. You can see when the performance of generator is good by looking at right figure. We gave attention from 75K to 125K as the range of optimization then verified the performance of network in various way.
+    * The left figure shows the loss graph for training and the right figure shows average correlation of generated samples during training. High correlation means that the generator can create realistic samples. You can see when the performance of generator is good by looking at right figure. We gave attention from 75K to 125K as the range of optimization then verified the performance of network in various way.
 
     ![image](https://user-images.githubusercontent.com/57948381/80568186-8190c300-8a31-11ea-8da9-3424d7484ecc.png)
-    * tSNE plot according to different epochs and each red/blue/orange dot means training/testing/generated samples. The more generator generate realistic samples, the more the distribution of generated samples becomes similar to the distribution of real samples.
+    * tSNE plot according to different epochs and each red/blue/orange dot means training/testing/generated samples. The more generator generates realistic samples, the more the distribution of generated samples becomes similar to the distribution of real samples.
     * Just change ep_ary to the array you want to check in the plot.tsne function.
     
     ![image](https://user-images.githubusercontent.com/57948381/80574499-ea316d00-8a3c-11ea-85c9-d24a16cea96b.png)
     * Even if the average correlation of samples generated is high, you can see variations of generated values from 75K to 125K. A detailed analysis of this will be handled later using heatmaps, and we set 100K weights then analysis following parts.
-    * Just change kwd, condidx and spidx you want to check. We have six condition(AD2M/4M/7M and WT2M/4M/7M) and each condition has six samples. So 'condidx=2 and spidx=3' means third sample of AD7M. The spidx starts from 1 but condidx starts from 0. (e.g., to check sixth of WT4M, set condidx and spidx 4 and 6 respectively.)
+    * Just change kwd, condidx and spidx you want to check. We have six conditions(AD2M/4M/7M and WT2M/4M/7M) and each condition has six samples. So 'condidx=2 and spidx=3' means third sample of AD7M. The spidx starts from 1 but condidx starts from 0. (e.g., to check sixth of WT4M, set condidx and spidx 4 and 6 respectively.)
 
     ![image](https://user-images.githubusercontent.com/57948381/80571019-d551db00-8a36-11ea-8a10-eea735fc33bd.png)
-    * In addition to tSNE analysis, validate the performance of generator again by comparing distirubion of sample values and correlation coefficient. Each two distribution between real and generate samples are looks similar, that is implied this generative adversarial networks is properly trained.
+    * In addition to tSNE analysis, validate the performance of generator again by comparing distribution of sample values and correlation coefficient. Each two distribution between real and generate samples are looks similar, that is implied this model is properly trained.
     
     ---
     * Following parts, we set 100K for more analysis.
@@ -46,20 +46,20 @@
     
     
     ![image](https://user-images.githubusercontent.com/57948381/80579533-2e287000-8a45-11ea-8b33-309bc815f009.png)
-    * Compare the generated samples using a latent variable that generates a realistic samples to real samples. The index of condition starts from zero, so the value of 2 means third of six condition(i.e., AD_7M).
+    * Compare the generated samples using a latent variable that generates realistic samples to real samples. The index of condition starts from zero, so the value of 2 means third of six conditions(i.e., AD_7M).
    
     ![image](https://user-images.githubusercontent.com/57948381/80573546-1e0b9300-8a3b-11ea-9363-bfc348bf77f9.png)
-    * Compare the generated value to real value of a specific gene, Apoe in this figure. Each left bar represents raw expression value and right bar represents generated expression value using a latent variable that generates a realistic samples. And each scatter point represents the Pearson's correlation coefficient between real and generated samples using the optimal latent variable with strong correlation coefficient for real values. Each scatter point represents the Pearson's correlation coefficient between real and generated samples, and based on these coefficient we obtained optimal latent vectors which can generate realistic samples.
+    * Compare the generated value to real value of a specific gene, Apoe in this figure. Each left bar represents raw expression value and right bar represents generated expression value using a latent variable that generates a realistic sample. And each scatter point represents the Pearson's correlation coefficient between real and generated samples using the optimal latent variable with strong correlation coefficient for real values. Each scatter point represents the Pearson's correlation coefficient between real and generated samples, and based on these coefficients we obtained optimal latent vectors which can generate realistic samples.
     * Just change kwd to a specific gene you want to check.
     
     ![image](https://user-images.githubusercontent.com/57948381/80600173-f7fbe800-8a66-11ea-8b55-c5417f9bc496.png)
-    * Simulate virtual disease progression using an average latent variables from 75K to 125K for all augmented 7M samples because 7M samples have more distinct character between two conditions, WT and AD. The line represents simulated gene expression values as Alzheimer's progresses and the shaded area represents standard deviation of simulated values of epochs.
+    * Simulate virtual disease progression using average latent variables from 75K to 125K for all augmented 7M samples because 7M samples have more distinct character between two conditions, WT and AD. The line represents simulated gene expression values as Alzheimer's progresses and the shaded area represents standard deviation of simulated values of epochs.
     * These transition curves can be represented as raw scales, and each point is the value of real samples we have.(The green line means 7M samples)
     * Just change flist to a list of genes you want to check. 
     
     ![image](https://user-images.githubusercontent.com/57948381/80604509-c5ed8480-8a6c-11ea-802f-66065bffb399.png)
-    * We further performed gene ontology and pathway analysis using WebGestalt with genes used to train this network, taht is, filtered genes from DEG analysis on 7M samples. You can use these transition curves to analyze any pathways you were interested in. In addition to the transition curve, we can also represent same values using heatmaps.
-    * If you have Webgestalt results, you only need to change upplist and dnplist to a pathway of you have intesrested in, but otherwise you have to create your own code by referencing our code.
+    * We further performed gene ontology and pathway analysis using WebGestalt with genes used to train this network, that is, filtered genes from DEG analysis on 7M samples. You can use these transition curves to analyze any pathways you were interested in. In addition to the transition curve, we can also represent same values using heatmaps.
+    * If you have Webgestalt results, you only need to change upplist and dnplist to a pathway of you have interested in, but otherwise you have to create your own code by referencing our code.
     
 
 ---
