@@ -1,0 +1,24 @@
+RNA-seq pipeline with a few script files used in this work.
+
+1. Download NCBI GEO GSE104775 dataset ( all 72 samples ) by Prefetch & FASTQ-dump 
+
+2. Check quality control by FASTQC
+
+3. Trimmming by trimmomatic ( trmming.sh ) 
+   
+3. Alignments
+   1) Build Hisat2 grcm38_tran package
+   2) Hisat2 alignments on GRCm38.93 annotations by 'hisat2.sh' script
+ 
+4. Evaluation of raw counts by HTSeq
+   1) Obtain raw counts files by 'htseq.sh' script
+   2) Combine all data by 'htseq_cout.py' 
+   
+5. 2nd alignments and raw counts
+   1) Extract Unmapped FASTQ files by 'Unmapped_FASTQ.sh'
+   2) 2nd alignments on GRCh38.93 annotations by 'hisat2_2nd.sh'
+   3) Obtain raw counts file by 'htseq_2nd.sh'
+   4) Extract raw counts for three human genes (APP, PSEN1, TREM2)
+   5) Combine raw counts profiles ( Mouse & Human ) as 'Raw_counts_from_HTSeq_w_HumanGenes.csv'
+
+6. Differently expressed genes by DESeq2 R script file ( DEG_by_DESeq2.R )
