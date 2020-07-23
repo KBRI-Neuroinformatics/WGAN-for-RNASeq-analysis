@@ -1,0 +1,34 @@
+File descriptionis
+
+LICENSE : MIT license file
+
+README.md : Guideline for prerequisites and usages (training & analyses)
+
+requirements.txt : List of mentatory python packages
+
+WGAN_for_rnaseq_analysis.ipynb : Jupyter notebook file including data augmentation, training GANs and other analyses, 
+                                 which use other python codes
+
+main.py : The python code executable on command line, which indludes data augmentation and training GANs.
+
+data_split.npz : The numpy compressed file of augmented 846 sample data ( simple linear data augmentaion )
+
+gaussian_data_split.npz : The numpy compressed file of augmented 846 sample data ( gaussian data augmentation )
+
+model.py : WGAN_GP class file
+
+preprocess.py : functions of preprocess (gene name parcing) and data augmentaions
+
+analysis.py : functions of analyses and latent interpolation
+
+plot.py : functions of plotting analysis data
+
+ver3_6trait_vectors.csv : Data for the predefined pattern curves, which is utilized in classification of transition curves
+
+
+DESeq2_htseq : Scripts and DEGs files of DEseq2 usage
+DESeq2_htseq/RNA-seq_scripts : Scripts for RNA-seq pipeline including Hisat2 alignments and HTSeq raw counts
+
+weights : An example of weights parameters for networks at 100k epoch
+
+rld1_gse104775_genx_247m_75k_125k : DEGs lists of six patterns and results of pathway analyses (KEGG, WIKI, GOBP )

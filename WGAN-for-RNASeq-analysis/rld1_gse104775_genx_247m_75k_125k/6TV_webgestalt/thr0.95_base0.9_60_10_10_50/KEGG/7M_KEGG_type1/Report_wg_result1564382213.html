@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<title>WebGestalt (WEB-based GEne SeT AnaLysis Toolkit)</title>
+<link rel="icon" type="image/png" href="https://s3-us-west-2.amazonaws.com/webgestalt/favicon.png">
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-42098540-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?flags=gated&features=es2015%2Ces2016%2Cfetch"></script>
+<script src="http://www.webgestalt.org/assets/0.4/build/vendor.min.js"></script>
+	
+	<script>window.cytoscape = null;</script>
+	<link rel="stylesheet" href="http://www.webgestalt.org/assets/0.4/build/vendor.css">
+	<link rel="stylesheet" href="http://www.webgestalt.org/assets/0.4/build/wg.css">
+<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+</head>
+<body>
+<header>
+	<div id="header-img"><a href="http://www.webgestalt.org"><img border="0" src="http://www.webgestalt.org/images/gsa.png"></a></div>
+	<div id="header-title">
+		<p id="header-title-text">WEB-based GEne SeT AnaLysis Toolkit</p>
+		<p id="header-subtitle-text">Translating gene lists into biological insights...</p>
+	</div>
+</header>
+<hr><main>
+<div id="app">
+<div class="loading-preinit" v-cloak><div class="loading-icon"></div></div>
+<div class="wrapper" v-cloak>
+<div class="level">
+	<div class="level-left">
+		<div class="level-item">
+			<h4 class="title is-4 has-text-primary">Summary</h4>
+		</div>
+	</div>
+	<div class="level-right">
+		<div class="level-item">
+			<a class="button is-text" href="Project_wg_result1564382213.zip" target="_blank">Result Download</a>
+		</div>
+	</div>
+</div>
+
+<section id="summary" class="summary">
+<div class="card" v-bind:class="{active: summaryShown}" >
+	<div class="card-header" v-on:click="summaryShown=!summaryShown">
+		<p class="card-header-title">Job summary</p>
+		<a href="#" class="card-header-icon">
+			<b-icon :icon="summaryShown ? 'chevron-up' : 'chevron-down'"></b-icon>
+		</a>
+	</div>
+	<div class="card-content content" v-show="summaryShown">
+		<ul id="summary-list"> 
+		<li><b>Enrichment method:</b> ORA</li>
+		<li><b>Organism: </b>mmusculus</li>
+		<li>
+				<b>Enrichment Categories: </b>pathway_KEGG
+				<a class="has-text-info" href="http://www.webgestalt.org/api/geneset?organism=mmusculus&database=pathway_KEGG&fileType=gmt">
+					<b-icon icon="download" size="is-small"></b-icon>
+				</a>
+					</li>
+		
+			<li><b>Interesting list: </b>new_6tv_ver3_7m_thr0.95_base0.9_type1_1564382213.txt. <b>ID type: </b>genesymbol</li>
+						<li>The interesting list contains <b>47</b> user IDs in which <b>47</b> user IDs are unambiguously mapped to <b>47</b> unique entrezgene IDs and <b>0</b> user IDs can not be mapped to any entrezgene ID.</li>
+			<li>The GO Slim summary are based upon the <b>47</b> unique entrezgene IDs.</li>
+		
+
+		<li>Among <b>47</b> unique entrezgene IDs, <b>27</b> IDs are annotated to the selected functional categories and also in the reference list, which are used for the enrichment analysis.</li>
+		
+		<li><b>Reference list: </b> all mapped entrezgene IDs from the selected platform genome</li>
+	
+	<li>The reference list can be mapped to <b>68167</b> entrezgene IDs and <b> 8275</b> IDs are annotated to the selected functional categories that are used as the reference for the enrichment analysis.</li>
+</ul> 
+
+<p><b>Parameters for the enrichment analysis:</b></p>
+<ul><li><b>Minimum number of IDs in the category: </b>5</li>
+<li><b>Maximum number of IDs in the category: </b>2000</li>
+<li><b>FDR Method: </b>BH</li>
+
+<li><b>Significance Level:</b> Top 1000</li>
+</ul>
+		
+	<p>Based on the above parameters, <b>92</b> categories are identified as enriched categories, in which <b>40</b> most significant categories and represetatives in the reduced sets are shown in this report. All significant categories can be downloaded from the 'Result Download' link.</p>
+
+
+	</div>
+</div>
+</section>
+<section id="go-summary" class="summary">
+<div class="card" v-bind:class="{active: goShown}" >
+	<div class="card-header" v-on:click="goShown=!goShown">
+		<p class="card-header-title">GO Slim summary for the user uploaded IDs</p>
+		<a href="#" class="card-header-icon">
+			<b-icon :icon="goShown ? 'chevron-up' : 'chevron-down'"></b-icon>
+		</a>
+	</div>
+	<div v-show="goShown">
+		<div class="card-content">
+			<p>Each Biological Process, Cellular Component and Molecular Function category is represented by a red, blue and green bar, repectively.</p>
+			<p>The height of the bar represents the number of IDs in the user list and also in the category.</p>
+		</div>
+		<div class="card-image">
+			<img src="goslim_summary_wg_result1564382213.png" width="100%" height="100%" alt="Bar charts of enriched GO Slim terms"/>
+		</div>
+	</div>
+</div>
+</section> <h4 class="title is-4 has-text-primary">Enrichment Results</h4>
+<section id="enrich-result">
+	<p class="select-redundancy">
+		<b-tooltip label="Enriched gene sets are post-processed by two methods to reduce redundancy." type="is-dark" animated multilined dashed>
+			Redundancy reduction:
+		</b-tooltip>
+		<b-radio v-model="redundancy" native-value="all">All</b-radio>
+		<b-radio v-model="redundancy" native-value="ap">
+			<b-tooltip label="R package apcluster is used to cluster gene sets." type="is-dark" animated multilined dashed>
+				Affinity propagation
+			</b-tooltip>
+		</b-radio>
+		
+		<b-radio v-model="redundancy" native-value="wsc">
+			<b-tooltip label="Find top gene sets while maximizing gene coverage." type="is-dark" animated multilined dashed>
+				Weighted set cover
+			</b-tooltip>
+		</b-radio>
+	</p>
+	<b-tabs v-model="activeTab" type="is-toggle">
+		<b-tab-item label="Table">
+			<wg-result-table
+				:data="enrichmentData"
+				:method="enrichMethod"
+			></wg-result-table>
+		</b-tab-item>
+		<b-tab-item label="Bar chart">
+		<div class="vertical-center-container">
+			<wg-bar-plot
+				:dimensions="bar.dimensions"
+				:data="enrichmentData"
+				:value-key="bar.valueKey"
+				:x-label="bar.xLabel">
+			</wg-bar-plot>
+		</div>
+		</b-tab-item>
+		<b-tab-item label="Volcano plot">
+		<div class="vertical-center-container">
+			<wg-volcano-plot
+				:data="volcanoData"
+				:x="volcano.x"
+				:y="volcano.y"
+				:dimensions="volcano.dimensions"
+				:x-label="volcano.xLabel"
+				:label-types="volcano.labelTypes"
+				:x-transform="volcano.xTransform"
+				:radius="volcano.radius"
+				:color="volcano.color"
+				:tooltip-content="volcano.tooltipContent"
+				:show-all-labels="false"
+				:auto-place-labels="true"
+			></wg-volcano-plot>
+		</div>
+		</b-tab-item>
+	</b-tabs>
+	<wg-gene-table
+		:data="geneTables"
+		:info="enrichment"
+		:standard-id="standardId"
+		:method="enrichMethod"
+		:mapped-input-size="mappedInputSize"
+		:organism="organism"
+		:host-name="hostName"
+		:sets-with-net="false"
+	></wg-gene-table>
+</section> 
+
+</div>
+</div>
+</main>
+	<script type="text/javascript" src="http://www.webgestalt.org/assets/0.4/build/wg.min.js"></script>
+<script type="text/javascript">
+var enrichment = [{"geneSet":"mmu00100","description":"Steroid biosynthesis","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu00100+16987+18194+20775+66234","size":19,"overlap":4,"expect":0.0619939577039275,"enrichmentRatio":64.5224171539961,"pValue":3.36981392345947e-07,"FDR":0.000108171026943049,"overlapId":"16987;18194;20775;66234"},{"geneSet":"mmu03010","description":"Ribosome","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu03010+19982+57808+66475+67248","size":175,"overlap":4,"expect":0.570996978851964,"enrichmentRatio":7.005291005291,"pValue":0.00231865265611542,"FDR":0.255982679627874,"overlapId":"19982;57808;66475;67248"},{"geneSet":"mmu04512","description":"ECM-receptor interaction","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu04512+109700+12841+16416","size":83,"overlap":3,"expect":0.270815709969789,"enrichmentRatio":11.0776439089692,"pValue":0.00239236149184929,"FDR":0.255982679627874,"overlapId":"109700;12841;16416"},{"geneSet":"mmu04151","description":"PI3K-Akt signaling pathway","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu04151+109700+12571+12841+16416+21687","size":358,"overlap":5,"expect":1.16809667673716,"enrichmentRatio":4.28046761845644,"pValue":0.00541542177972609,"FDR":0.434587597823019,"overlapId":"109700;12571;12841;16416;21687"},{"geneSet":"mmu04721","description":"Synaptic vesicle cycle","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu04721+116837+13852","size":62,"overlap":2,"expect":0.202296072507553,"enrichmentRatio":9.88649940262843,"pValue":0.0171891182289647,"FDR":0.879542307673204,"overlapId":"116837;13852"},{"geneSet":"mmu05412","description":"Arrhythmogenic right ventricular cardiomyopathy (ARVC)","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu05412+109700+16416","size":72,"overlap":2,"expect":0.234924471299094,"enrichmentRatio":8.51337448559671,"pValue":0.0227750754313006,"FDR":0.879542307673204,"overlapId":"109700;16416"},{"geneSet":"mmu04510","description":"Focal adhesion","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu04510+109700+12841+16416","size":199,"overlap":3,"expect":0.649305135951662,"enrichmentRatio":4.62032384142937,"pValue":0.0262158869693213,"FDR":0.879542307673204,"overlapId":"109700;12841;16416"},{"geneSet":"mmu05410","description":"Hypertrophic cardiomyopathy (HCM)","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu05410+109700+16416","size":84,"overlap":2,"expect":0.274078549848943,"enrichmentRatio":7.29717813051146,"pValue":0.0303284999127615,"FDR":0.879542307673204,"overlapId":"109700;16416"},{"geneSet":"mmu05165","description":"Human papillomavirus infection","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu05165+109700+12571+12841+16416","size":370,"overlap":4,"expect":1.20725075528701,"enrichmentRatio":3.31331331331331,"pValue":0.0305750371747595,"FDR":0.879542307673204,"overlapId":"109700;12571;12841;16416"},{"geneSet":"mmu05414","description":"Dilated cardiomyopathy (DCM)","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu05414+109700+16416","size":89,"overlap":2,"expect":0.290392749244713,"enrichmentRatio":6.88722430295464,"pValue":0.0337325935074053,"FDR":0.879542307673204,"overlapId":"109700;16416"},{"geneSet":"mmu00072","description":"Synthesis and degradation of ketone bodies","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu00072+208715","size":11,"overlap":1,"expect":0.0358912386706949,"enrichmentRatio":27.8619528619529,"pValue":0.035332402977087,"FDR":0.879542307673204,"overlapId":"208715"},{"geneSet":"mmu05222","description":"Small cell lung cancer","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu05222+12571+22030","size":92,"overlap":2,"expect":0.300181268882175,"enrichmentRatio":6.66264090177134,"pValue":0.0358441471587562,"FDR":0.879542307673204,"overlapId":"12571;22030"},{"geneSet":"mmu04640","description":"Hematopoietic cell lineage","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu04640+109700+16416","size":95,"overlap":2,"expect":0.309969788519637,"enrichmentRatio":6.45224171539961,"pValue":0.0380061503172476,"FDR":0.879542307673204,"overlapId":"109700;16416"},{"geneSet":"mmu05203","description":"Viral carcinogenesis","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu05203+12571+22030+23894","size":231,"overlap":3,"expect":0.753716012084592,"enrichmentRatio":3.98027898027898,"pValue":0.0383601006461833,"FDR":0.879542307673204,"overlapId":"12571;22030;23894"},{"geneSet":"mmu05163","description":"Human cytomegalovirus infection","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu05163+12571+16416+22030","size":256,"overlap":3,"expect":0.835287009063444,"enrichmentRatio":3.59157986111111,"pValue":0.0495485160257607,"FDR":1,"overlapId":"12571;16416;22030"},{"geneSet":"mmu04071","description":"Sphingolipid signaling pathway","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu04071+18806+22030","size":122,"overlap":2,"expect":0.398066465256798,"enrichmentRatio":5.02428658166363,"pValue":0.0595569547011909,"FDR":1,"overlapId":"18806;22030"},{"geneSet":"mmu01210","description":"2-Oxocarboxylic acid metabolism","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu01210+15926","size":19,"overlap":1,"expect":0.0619939577039275,"enrichmentRatio":16.130604288499,"pValue":0.0602703615409912,"FDR":1,"overlapId":"15926"},{"geneSet":"mmu04380","description":"Osteoclast differentiation","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu04380+16416+22030","size":128,"overlap":2,"expect":0.417643504531722,"enrichmentRatio":4.78877314814815,"pValue":0.0648123820191733,"FDR":1,"overlapId":"16416;22030"},{"geneSet":"mmu00900","description":"Terpenoid backbone biosynthesis","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu00900+208715","size":23,"overlap":1,"expect":0.0750453172205438,"enrichmentRatio":13.3252818035427,"pValue":0.0725053766010715,"FDR":1,"overlapId":"208715"},{"geneSet":"mmu04392","description":"Hippo signaling pathway","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu04392+21677","size":26,"overlap":1,"expect":0.084833836858006,"enrichmentRatio":11.7877492877493,"pValue":0.0815808211278675,"FDR":1,"overlapId":"21677"},{"geneSet":"mmu00650","description":"Butanoate metabolism","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu00650+208715","size":27,"overlap":1,"expect":0.0880966767371601,"enrichmentRatio":11.3511659807956,"pValue":0.0845869209980994,"FDR":1,"overlapId":"208715"},{"geneSet":"mmu00020","description":"Citrate cycle (TCA cycle)","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu00020+15926","size":32,"overlap":1,"expect":0.104410876132931,"enrichmentRatio":9.5775462962963,"pValue":0.0994758526147964,"FDR":1,"overlapId":"15926"},{"geneSet":"mmu04130","description":"SNARE interactions in vesicular transport","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu04130+13852","size":33,"overlap":1,"expect":0.107673716012085,"enrichmentRatio":9.28731762065095,"pValue":0.102425525304278,"FDR":1,"overlapId":"13852"},{"geneSet":"mmu04621","description":"NOD-like receptor signaling pathway","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu04621+22030+229900","size":168,"overlap":2,"expect":0.548157099697885,"enrichmentRatio":3.64858906525573,"pValue":0.103403514977207,"FDR":1,"overlapId":"22030;229900"},{"geneSet":"mmu03420","description":"Nucleotide excision repair","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu03420+23894","size":43,"overlap":1,"expect":0.140302114803625,"enrichmentRatio":7.12747631352283,"pValue":0.131415109870879,"FDR":1,"overlapId":"23894"},{"geneSet":"mmu03022","description":"Basal transcription factors","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu03022+23894","size":44,"overlap":1,"expect":0.143564954682779,"enrichmentRatio":6.96548821548822,"pValue":0.134263967017804,"FDR":1,"overlapId":"23894"},{"geneSet":"mmu01100","description":"Metabolic pathways","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu01100+15926+16987+18194+18806+20775+208715+66234","size":1351,"overlap":7,"expect":4.40809667673716,"enrichmentRatio":1.58798695068125,"pValue":0.138546172250767,"FDR":1,"overlapId":"15926;16987;18194;18806;20775;208715;66234"},{"geneSet":"mmu00565","description":"Ether lipid metabolism","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu00565+18806","size":47,"overlap":1,"expect":0.153353474320242,"enrichmentRatio":6.52088258471237,"pValue":0.142756654074219,"FDR":1,"overlapId":"18806"},{"geneSet":"mmu04015","description":"Rap1 signaling pathway","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu04015+16416+21687","size":209,"overlap":2,"expect":0.681933534743202,"enrichmentRatio":2.93283714336346,"pValue":0.147915368213691,"FDR":1,"overlapId":"16416;21687"},{"geneSet":"mmu04330","description":"Notch signaling pathway","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu04330+11491","size":49,"overlap":1,"expect":0.15987915407855,"enrichmentRatio":6.25472411186697,"pValue":0.148373814154177,"FDR":1,"overlapId":"11491"},{"geneSet":"mmu04810","description":"Regulation of actin cytoskeleton","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu04810+109700+16416","size":215,"overlap":2,"expect":0.701510574018127,"enrichmentRatio":2.85099052540913,"pValue":0.154739667502352,"FDR":1,"overlapId":"109700;16416"},{"geneSet":"mmu05167","description":"Kaposi sarcoma-associated herpesvirus infection","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu05167+12571+22030","size":217,"overlap":2,"expect":0.708036253776435,"enrichmentRatio":2.8247141150367,"pValue":0.157028897425007,"FDR":1,"overlapId":"12571;22030"},{"geneSet":"mmu04923","description":"Regulation of lipolysis in adipocytes","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu04923+67469","size":55,"overlap":1,"expect":0.179456193353474,"enrichmentRatio":5.57239057239057,"pValue":0.165013440093593,"FDR":1,"overlapId":"67469"},{"geneSet":"mmu00280","description":"Valine, leucine and isoleucine degradation","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu00280+208715","size":56,"overlap":1,"expect":0.182719033232628,"enrichmentRatio":5.4728835978836,"pValue":0.167756096677227,"FDR":1,"overlapId":"208715"},{"geneSet":"mmu05169","description":"Epstein-Barr virus infection","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu05169+12571+22030","size":230,"overlap":2,"expect":0.750453172205438,"enrichmentRatio":2.66505636070853,"pValue":0.172070017131164,"FDR":1,"overlapId":"12571;22030"},{"geneSet":"mmu04014","description":"Ras signaling pathway","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu04014+18806+21687","size":233,"overlap":2,"expect":0.7602416918429,"enrichmentRatio":2.63074233031315,"pValue":0.175577609576632,"FDR":1,"overlapId":"18806;21687"},{"geneSet":"mmu00480","description":"Glutathione metabolism","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu00480+15926","size":64,"overlap":1,"expect":0.208821752265861,"enrichmentRatio":4.78877314814815,"pValue":0.189387216228702,"FDR":1,"overlapId":"15926"},{"geneSet":"mmu05223","description":"Non-small cell lung cancer","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu05223+12571","size":66,"overlap":1,"expect":0.215347432024169,"enrichmentRatio":4.64365881032548,"pValue":0.194709805254104,"FDR":1,"overlapId":"12571"},{"geneSet":"mmu04622","description":"RIG-I-like receptor signaling pathway","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu04622+22030","size":68,"overlap":1,"expect":0.221873111782477,"enrichmentRatio":4.50708061002179,"pValue":0.19999873167788,"FDR":1,"overlapId":"22030"},{"geneSet":"mmu04115","description":"p53 signaling pathway","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu04115+12571","size":71,"overlap":1,"expect":0.23166163141994,"enrichmentRatio":4.31664058424622,"pValue":0.207869451520442,"FDR":1,"overlapId":"12571"},{"geneSet":"mmu05323","description":"Rheumatoid arthritis","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu05323+21687","size":83,"overlap":1,"expect":0.270815709969789,"enrichmentRatio":3.6925479696564,"pValue":0.23861315741257,"FDR":1,"overlapId":"21687"},{"geneSet":"mmu00830","description":"Retinol metabolism","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu00830+67442","size":91,"overlap":1,"expect":0.296918429003021,"enrichmentRatio":3.36792836792837,"pValue":0.258467108387112,"FDR":1,"overlapId":"67442"},{"geneSet":"mmu04670","description":"Leukocyte transendothelial migration","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu04670+21838","size":115,"overlap":1,"expect":0.375226586102719,"enrichmentRatio":2.66505636070853,"pValue":0.315082843573615,"FDR":1,"overlapId":"21838"},{"geneSet":"mmu04919","description":"Thyroid hormone signaling pathway","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu04919+16416","size":115,"overlap":1,"expect":0.375226586102719,"enrichmentRatio":2.66505636070853,"pValue":0.315082843573615,"FDR":1,"overlapId":"16416"},{"geneSet":"mmu04750","description":"Inflammatory mediator regulation of TRP channels","link":"http://www.kegg.jp/kegg-bin/show_pathway?mmu04750+18755","size":125,"overlap":1,"expect":0.40785498489426,"enrichmentRatio":2.45185185185185,"pValue":0.337423202762957,"FDR":1,"overlapId":"18755"}];
+var background = [];
+var geneTables = {"mmu00100":[{"userId":"Sqle","geneSymbol":"Sqle","geneName":"squalene epoxidase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=20775","entrezgene":"20775"},{"userId":"Nsdhl","geneSymbol":"Nsdhl","geneName":"NAD(P) dependent steroid dehydrogenase-like","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=18194","entrezgene":"18194"},{"userId":"Msmo1","geneSymbol":"Msmo1","geneName":"methylsterol monoxygenase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=66234","entrezgene":"66234"},{"userId":"Lss","geneSymbol":"Lss","geneName":"lanosterol synthase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=16987","entrezgene":"16987"}],"mmu03010":[{"userId":"Rps23","geneSymbol":"Rps23","geneName":"ribosomal protein S23","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=66475","entrezgene":"66475"},{"userId":"Rpl35a","geneSymbol":"Rpl35a","geneName":"ribosomal protein L35A","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=57808","entrezgene":"57808"},{"userId":"Rpl36a","geneSymbol":"Rpl36a","geneName":"ribosomal protein L36A","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=19982","entrezgene":"19982"},{"userId":"Rpl39","geneSymbol":"Rpl39","geneName":"ribosomal protein L39","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=67248","entrezgene":"67248"}],"mmu04512":[{"userId":"Itgb3","geneSymbol":"Itgb3","geneName":"integrin beta 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=16416","entrezgene":"16416"},{"userId":"Col9a3","geneSymbol":"Col9a3","geneName":"collagen, type IX, alpha 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=12841","entrezgene":"12841"},{"userId":"Itga1","geneSymbol":"Itga1","geneName":"integrin alpha 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=109700","entrezgene":"109700"}],"mmu04151":[{"userId":"Tek","geneSymbol":"Tek","geneName":"TEK receptor tyrosine kinase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=21687","entrezgene":"21687"},{"userId":"Itgb3","geneSymbol":"Itgb3","geneName":"integrin beta 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=16416","entrezgene":"16416"},{"userId":"Col9a3","geneSymbol":"Col9a3","geneName":"collagen, type IX, alpha 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=12841","entrezgene":"12841"},{"userId":"Cdk6","geneSymbol":"Cdk6","geneName":"cyclin-dependent kinase 6","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=12571","entrezgene":"12571"},{"userId":"Itga1","geneSymbol":"Itga1","geneName":"integrin alpha 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=109700","entrezgene":"109700"}],"mmu04721":[{"userId":"Stx2","geneSymbol":"Stx2","geneName":"syntaxin 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=13852","entrezgene":"13852"},{"userId":"Rims1","geneSymbol":"Rims1","geneName":"regulating synaptic membrane exocytosis 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=116837","entrezgene":"116837"}],"mmu05412":[{"userId":"Itgb3","geneSymbol":"Itgb3","geneName":"integrin beta 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=16416","entrezgene":"16416"},{"userId":"Itga1","geneSymbol":"Itga1","geneName":"integrin alpha 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=109700","entrezgene":"109700"}],"mmu04510":[{"userId":"Itgb3","geneSymbol":"Itgb3","geneName":"integrin beta 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=16416","entrezgene":"16416"},{"userId":"Col9a3","geneSymbol":"Col9a3","geneName":"collagen, type IX, alpha 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=12841","entrezgene":"12841"},{"userId":"Itga1","geneSymbol":"Itga1","geneName":"integrin alpha 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=109700","entrezgene":"109700"}],"mmu05410":[{"userId":"Itgb3","geneSymbol":"Itgb3","geneName":"integrin beta 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=16416","entrezgene":"16416"},{"userId":"Itga1","geneSymbol":"Itga1","geneName":"integrin alpha 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=109700","entrezgene":"109700"}],"mmu05165":[{"userId":"Itgb3","geneSymbol":"Itgb3","geneName":"integrin beta 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=16416","entrezgene":"16416"},{"userId":"Col9a3","geneSymbol":"Col9a3","geneName":"collagen, type IX, alpha 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=12841","entrezgene":"12841"},{"userId":"Cdk6","geneSymbol":"Cdk6","geneName":"cyclin-dependent kinase 6","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=12571","entrezgene":"12571"},{"userId":"Itga1","geneSymbol":"Itga1","geneName":"integrin alpha 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=109700","entrezgene":"109700"}],"mmu05414":[{"userId":"Itgb3","geneSymbol":"Itgb3","geneName":"integrin beta 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=16416","entrezgene":"16416"},{"userId":"Itga1","geneSymbol":"Itga1","geneName":"integrin alpha 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=109700","entrezgene":"109700"}],"mmu00072":[{"userId":"Hmgcs1","geneSymbol":"Hmgcs1","geneName":"3-hydroxy-3-methylglutaryl-Coenzyme A synthase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=208715","entrezgene":"208715"}],"mmu05222":[{"userId":"Traf2","geneSymbol":"Traf2","geneName":"TNF receptor-associated factor 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=22030","entrezgene":"22030"},{"userId":"Cdk6","geneSymbol":"Cdk6","geneName":"cyclin-dependent kinase 6","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=12571","entrezgene":"12571"}],"mmu04640":[{"userId":"Itgb3","geneSymbol":"Itgb3","geneName":"integrin beta 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=16416","entrezgene":"16416"},{"userId":"Itga1","geneSymbol":"Itga1","geneName":"integrin alpha 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=109700","entrezgene":"109700"}],"mmu05203":[{"userId":"Gtf2h2","geneSymbol":"Gtf2h2","geneName":"general transcription factor II H, polypeptide 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=23894","entrezgene":"23894"},{"userId":"Traf2","geneSymbol":"Traf2","geneName":"TNF receptor-associated factor 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=22030","entrezgene":"22030"},{"userId":"Cdk6","geneSymbol":"Cdk6","geneName":"cyclin-dependent kinase 6","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=12571","entrezgene":"12571"}],"mmu05163":[{"userId":"Itgb3","geneSymbol":"Itgb3","geneName":"integrin beta 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=16416","entrezgene":"16416"},{"userId":"Traf2","geneSymbol":"Traf2","geneName":"TNF receptor-associated factor 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=22030","entrezgene":"22030"},{"userId":"Cdk6","geneSymbol":"Cdk6","geneName":"cyclin-dependent kinase 6","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=12571","entrezgene":"12571"}],"mmu04071":[{"userId":"Pld2","geneSymbol":"Pld2","geneName":"phospholipase D2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=18806","entrezgene":"18806"},{"userId":"Traf2","geneSymbol":"Traf2","geneName":"TNF receptor-associated factor 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=22030","entrezgene":"22030"}],"mmu01210":[{"userId":"Idh1","geneSymbol":"Idh1","geneName":"isocitrate dehydrogenase 1 (NADP+), soluble","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=15926","entrezgene":"15926"}],"mmu04380":[{"userId":"Itgb3","geneSymbol":"Itgb3","geneName":"integrin beta 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=16416","entrezgene":"16416"},{"userId":"Traf2","geneSymbol":"Traf2","geneName":"TNF receptor-associated factor 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=22030","entrezgene":"22030"}],"mmu00900":[{"userId":"Hmgcs1","geneSymbol":"Hmgcs1","geneName":"3-hydroxy-3-methylglutaryl-Coenzyme A synthase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=208715","entrezgene":"208715"}],"mmu04392":[{"userId":"Tead2","geneSymbol":"Tead2","geneName":"TEA domain family member 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=21677","entrezgene":"21677"}],"mmu00650":[{"userId":"Hmgcs1","geneSymbol":"Hmgcs1","geneName":"3-hydroxy-3-methylglutaryl-Coenzyme A synthase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=208715","entrezgene":"208715"}],"mmu00020":[{"userId":"Idh1","geneSymbol":"Idh1","geneName":"isocitrate dehydrogenase 1 (NADP+), soluble","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=15926","entrezgene":"15926"}],"mmu04130":[{"userId":"Stx2","geneSymbol":"Stx2","geneName":"syntaxin 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=13852","entrezgene":"13852"}],"mmu04621":[{"userId":"Traf2","geneSymbol":"Traf2","geneName":"TNF receptor-associated factor 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=22030","entrezgene":"22030"},{"userId":"Gbp7","geneSymbol":"Gbp7","geneName":"guanylate binding protein 7","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=229900","entrezgene":"229900"}],"mmu03420":[{"userId":"Gtf2h2","geneSymbol":"Gtf2h2","geneName":"general transcription factor II H, polypeptide 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=23894","entrezgene":"23894"}],"mmu03022":[{"userId":"Gtf2h2","geneSymbol":"Gtf2h2","geneName":"general transcription factor II H, polypeptide 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=23894","entrezgene":"23894"}],"mmu01100":[{"userId":"Pld2","geneSymbol":"Pld2","geneName":"phospholipase D2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=18806","entrezgene":"18806"},{"userId":"Sqle","geneSymbol":"Sqle","geneName":"squalene epoxidase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=20775","entrezgene":"20775"},{"userId":"Idh1","geneSymbol":"Idh1","geneName":"isocitrate dehydrogenase 1 (NADP+), soluble","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=15926","entrezgene":"15926"},{"userId":"Nsdhl","geneSymbol":"Nsdhl","geneName":"NAD(P) dependent steroid dehydrogenase-like","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=18194","entrezgene":"18194"},{"userId":"Msmo1","geneSymbol":"Msmo1","geneName":"methylsterol monoxygenase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=66234","entrezgene":"66234"},{"userId":"Lss","geneSymbol":"Lss","geneName":"lanosterol synthase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=16987","entrezgene":"16987"},{"userId":"Hmgcs1","geneSymbol":"Hmgcs1","geneName":"3-hydroxy-3-methylglutaryl-Coenzyme A synthase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=208715","entrezgene":"208715"}],"mmu00565":[{"userId":"Pld2","geneSymbol":"Pld2","geneName":"phospholipase D2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=18806","entrezgene":"18806"}],"mmu04015":[{"userId":"Tek","geneSymbol":"Tek","geneName":"TEK receptor tyrosine kinase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=21687","entrezgene":"21687"},{"userId":"Itgb3","geneSymbol":"Itgb3","geneName":"integrin beta 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=16416","entrezgene":"16416"}],"mmu04330":[{"userId":"Adam17","geneSymbol":"Adam17","geneName":"a disintegrin and metallopeptidase domain 17","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=11491","entrezgene":"11491"}],"mmu04810":[{"userId":"Itgb3","geneSymbol":"Itgb3","geneName":"integrin beta 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=16416","entrezgene":"16416"},{"userId":"Itga1","geneSymbol":"Itga1","geneName":"integrin alpha 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=109700","entrezgene":"109700"}],"mmu05167":[{"userId":"Traf2","geneSymbol":"Traf2","geneName":"TNF receptor-associated factor 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=22030","entrezgene":"22030"},{"userId":"Cdk6","geneSymbol":"Cdk6","geneName":"cyclin-dependent kinase 6","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=12571","entrezgene":"12571"}],"mmu04923":[{"userId":"Abhd5","geneSymbol":"Abhd5","geneName":"abhydrolase domain containing 5","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=67469","entrezgene":"67469"}],"mmu00280":[{"userId":"Hmgcs1","geneSymbol":"Hmgcs1","geneName":"3-hydroxy-3-methylglutaryl-Coenzyme A synthase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=208715","entrezgene":"208715"}],"mmu05169":[{"userId":"Traf2","geneSymbol":"Traf2","geneName":"TNF receptor-associated factor 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=22030","entrezgene":"22030"},{"userId":"Cdk6","geneSymbol":"Cdk6","geneName":"cyclin-dependent kinase 6","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=12571","entrezgene":"12571"}],"mmu04014":[{"userId":"Tek","geneSymbol":"Tek","geneName":"TEK receptor tyrosine kinase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=21687","entrezgene":"21687"},{"userId":"Pld2","geneSymbol":"Pld2","geneName":"phospholipase D2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=18806","entrezgene":"18806"}],"mmu00480":[{"userId":"Idh1","geneSymbol":"Idh1","geneName":"isocitrate dehydrogenase 1 (NADP+), soluble","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=15926","entrezgene":"15926"}],"mmu05223":[{"userId":"Cdk6","geneSymbol":"Cdk6","geneName":"cyclin-dependent kinase 6","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=12571","entrezgene":"12571"}],"mmu04622":[{"userId":"Traf2","geneSymbol":"Traf2","geneName":"TNF receptor-associated factor 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=22030","entrezgene":"22030"}],"mmu04115":[{"userId":"Cdk6","geneSymbol":"Cdk6","geneName":"cyclin-dependent kinase 6","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=12571","entrezgene":"12571"}],"mmu04920":[{"userId":"Traf2","geneSymbol":"Traf2","geneName":"TNF receptor-associated factor 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=22030","entrezgene":"22030"}],"mmu05214":[{"userId":"Cdk6","geneSymbol":"Cdk6","geneName":"cyclin-dependent kinase 6","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=12571","entrezgene":"12571"}],"mmu05218":[{"userId":"Cdk6","geneSymbol":"Cdk6","geneName":"cyclin-dependent kinase 6","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=12571","entrezgene":"12571"}],"mmu05212":[{"userId":"Cdk6","geneSymbol":"Cdk6","geneName":"cyclin-dependent kinase 6","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=12571","entrezgene":"12571"}],"mmu05220":[{"userId":"Cdk6","geneSymbol":"Cdk6","geneName":"cyclin-dependent kinase 6","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=12571","entrezgene":"12571"}],"mmu01230":[{"userId":"Idh1","geneSymbol":"Idh1","geneName":"isocitrate dehydrogenase 1 (NADP+), soluble","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=15926","entrezgene":"15926"}],"mmu05206":[{"userId":"Itgb3","geneSymbol":"Itgb3","geneName":"integrin beta 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=16416","entrezgene":"16416"},{"userId":"Cdk6","geneSymbol":"Cdk6","geneName":"cyclin-dependent kinase 6","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=12571","entrezgene":"12571"}],"mmu05323":[{"userId":"Tek","geneSymbol":"Tek","geneName":"TEK receptor tyrosine kinase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=21687","entrezgene":"21687"}],"mmu04146":[{"userId":"Idh1","geneSymbol":"Idh1","geneName":"isocitrate dehydrogenase 1 (NADP+), soluble","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=15926","entrezgene":"15926"}],"mmu04666":[{"userId":"Pld2","geneSymbol":"Pld2","geneName":"phospholipase D2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=18806","entrezgene":"18806"}],"mmu04010":[{"userId":"Tek","geneSymbol":"Tek","geneName":"TEK receptor tyrosine kinase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=21687","entrezgene":"21687"},{"userId":"Traf2","geneSymbol":"Traf2","geneName":"TNF receptor-associated factor 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=22030","entrezgene":"22030"}],"mmu04912":[{"userId":"Pld2","geneSymbol":"Pld2","geneName":"phospholipase D2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=18806","entrezgene":"18806"}],"mmu04974":[{"userId":"Col9a3","geneSymbol":"Col9a3","geneName":"collagen, type IX, alpha 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=12841","entrezgene":"12841"}],"mmu00830":[{"userId":"Retsat","geneSymbol":"Retsat","geneName":"retinol saturase (all trans retinol 13,14 reductase)","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=67442","entrezgene":"67442"}],"mmu04657":[{"userId":"Traf2","geneSymbol":"Traf2","geneName":"TNF receptor-associated factor 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=22030","entrezgene":"22030"}],"mmu00564":[{"userId":"Pld2","geneSymbol":"Pld2","geneName":"phospholipase D2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=18806","entrezgene":"18806"}],"mmu05231":[{"userId":"Pld2","geneSymbol":"Pld2","geneName":"phospholipase D2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=18806","entrezgene":"18806"}],"mmu04064":[{"userId":"Traf2","geneSymbol":"Traf2","geneName":"TNF receptor-associated factor 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=22030","entrezgene":"22030"}],"mmu04066":[{"userId":"Tek","geneSymbol":"Tek","geneName":"TEK receptor tyrosine kinase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=21687","entrezgene":"21687"}],"mmu04928":[{"userId":"Pld2","geneSymbol":"Pld2","geneName":"phospholipase D2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=18806","entrezgene":"18806"}],"mmu04668":[{"userId":"Traf2","geneSymbol":"Traf2","geneName":"TNF receptor-associated factor 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=22030","entrezgene":"22030"}],"mmu04724":[{"userId":"Pld2","geneSymbol":"Pld2","geneName":"phospholipase D2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=18806","entrezgene":"18806"}],"mmu04670":[{"userId":"Thy1","geneSymbol":"Thy1","geneName":"thymus cell antigen 1, theta","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=21838","entrezgene":"21838"}],"mmu04919":[{"userId":"Itgb3","geneSymbol":"Itgb3","geneName":"integrin beta 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=16416","entrezgene":"16416"}],"mmu01200":[{"userId":"Idh1","geneSymbol":"Idh1","geneName":"isocitrate dehydrogenase 1 (NADP+), soluble","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=15926","entrezgene":"15926"}],"mmu04110":[{"userId":"Cdk6","geneSymbol":"Cdk6","geneName":"cyclin-dependent kinase 6","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=12571","entrezgene":"12571"}],"mmu04611":[{"userId":"Itgb3","geneSymbol":"Itgb3","geneName":"integrin beta 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=16416","entrezgene":"16416"}],"mmu04750":[{"userId":"Prkch","geneSymbol":"Prkch","geneName":"protein kinase C, eta","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=18755","entrezgene":"18755"}],"mmu04270":[{"userId":"Prkch","geneSymbol":"Prkch","geneName":"protein kinase C, eta","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=18755","entrezgene":"18755"}],"mmu05160":[{"userId":"Traf2","geneSymbol":"Traf2","geneName":"TNF receptor-associated factor 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=22030","entrezgene":"22030"}],"mmu04210":[{"userId":"Traf2","geneSymbol":"Traf2","geneName":"TNF receptor-associated factor 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=22030","entrezgene":"22030"}],"mmu05162":[{"userId":"Cdk6","geneSymbol":"Cdk6","geneName":"cyclin-dependent kinase 6","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=12571","entrezgene":"12571"}],"mmu05161":[{"userId":"Cdk6","geneSymbol":"Cdk6","geneName":"cyclin-dependent kinase 6","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=12571","entrezgene":"12571"}],"mmu05418":[{"userId":"Itgb3","geneSymbol":"Itgb3","geneName":"integrin beta 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=16416","entrezgene":"16416"}],"mmu04072":[{"userId":"Pld2","geneSymbol":"Pld2","geneName":"phospholipase D2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=18806","entrezgene":"18806"}],"mmu05224":[{"userId":"Cdk6","geneSymbol":"Cdk6","geneName":"cyclin-dependent kinase 6","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=12571","entrezgene":"12571"}],"mmu04723":[{"userId":"Rims1","geneSymbol":"Rims1","geneName":"regulating synaptic membrane exocytosis 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=116837","entrezgene":"116837"}],"mmu04932":[{"userId":"Traf2","geneSymbol":"Traf2","geneName":"TNF receptor-associated factor 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=22030","entrezgene":"22030"}],"mmu04390":[{"userId":"Tead2","geneSymbol":"Tead2","geneName":"TEA domain family member 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=21677","entrezgene":"21677"}],"mmu04934":[{"userId":"Cdk6","geneSymbol":"Cdk6","geneName":"cyclin-dependent kinase 6","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=12571","entrezgene":"12571"}],"mmu04141":[{"userId":"Traf2","geneSymbol":"Traf2","geneName":"TNF receptor-associated factor 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=22030","entrezgene":"22030"}],"mmu05225":[{"userId":"Cdk6","geneSymbol":"Cdk6","geneName":"cyclin-dependent kinase 6","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=12571","entrezgene":"12571"}],"mmu05010":[{"userId":"Adam17","geneSymbol":"Adam17","geneName":"a disintegrin and metallopeptidase domain 17","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=11491","entrezgene":"11491"}],"mmu04217":[{"userId":"Traf2","geneSymbol":"Traf2","geneName":"TNF receptor-associated factor 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=22030","entrezgene":"22030"}],"mmu04145":[{"userId":"Itgb3","geneSymbol":"Itgb3","geneName":"integrin beta 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=16416","entrezgene":"16416"}],"mmu04218":[{"userId":"Cdk6","geneSymbol":"Cdk6","geneName":"cyclin-dependent kinase 6","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=12571","entrezgene":"12571"}],"mmu04024":[{"userId":"Pld2","geneSymbol":"Pld2","geneName":"phospholipase D2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=18806","entrezgene":"18806"}],"mmu05205":[{"userId":"Itgb3","geneSymbol":"Itgb3","geneName":"integrin beta 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=16416","entrezgene":"16416"}],"mmu05168":[{"userId":"Traf2","geneSymbol":"Traf2","geneName":"TNF receptor-associated factor 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=22030","entrezgene":"22030"}],"mmu05200":[{"userId":"Traf2","geneSymbol":"Traf2","geneName":"TNF receptor-associated factor 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=22030","entrezgene":"22030"},{"userId":"Cdk6","geneSymbol":"Cdk6","geneName":"cyclin-dependent kinase 6","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=12571","entrezgene":"12571"}],"mmu05170":[{"userId":"Traf2","geneSymbol":"Traf2","geneName":"TNF receptor-associated factor 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=22030","entrezgene":"22030"}],"mmu04144":[{"userId":"Pld2","geneSymbol":"Pld2","geneName":"phospholipase D2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=18806","entrezgene":"18806"}]};
+var clusters = {"ap":{"clusters":[["mmu00100","mmu01100"],["mmu03010"],["mmu04512","mmu04151","mmu04510","mmu05165","mmu04974"],["mmu04721","mmu04130","mmu04723"],["mmu05412","mmu05410","mmu05414","mmu04640","mmu04810"],["mmu00072","mmu00900","mmu00650","mmu00280"],["mmu05222","mmu05203","mmu05163","mmu05167","mmu05169","mmu05200"],["mmu01210","mmu00020","mmu00480","mmu01230","mmu04146","mmu01200"],["mmu04392","mmu04390"],["mmu03420","mmu03022"],["mmu00565","mmu04666","mmu04912","mmu00564","mmu05231","mmu04928","mmu04724","mmu04072","mmu04024","mmu04144"],["mmu04330","mmu05010"],["mmu04923"],["mmu05223","mmu04115","mmu05214","mmu05218","mmu05212","mmu05220","mmu04110","mmu05162","mmu05161","mmu05224","mmu04934","mmu05225","mmu04218"],["mmu04622","mmu04071","mmu04621","mmu04920","mmu04010","mmu04657","mmu04064","mmu04668","mmu05160","mmu04210","mmu04932","mmu04141","mmu04217","mmu05168","mmu05170"],["mmu05323","mmu04015","mmu04014","mmu04066"],["mmu00830"],["mmu04670"],["mmu04919","mmu04380","mmu05206","mmu04611","mmu05418","mmu04145","mmu05205"],["mmu04750","mmu04270"]],"representatives":["mmu00100","mmu03010","mmu04512","mmu04721","mmu05412","mmu00072","mmu05222","mmu01210","mmu04392","mmu03420","mmu00565","mmu04330","mmu04923","mmu05223","mmu04622","mmu05323","mmu00830","mmu04670","mmu04919","mmu04750"]},"wsc":{"representatives":["mmu00100","mmu04151","mmu03010","mmu04721","mmu05203","mmu01100","mmu04392","mmu04621","mmu04330","mmu04923"],"coverage":[0.8889]}};
+
+wgLib({
+	enrichDatabase: "pathway_KEGG",
+	organism: "mmusculus",
+	hostName: "http://www.webgestalt.org",
+	enrichment: enrichment,
+	background: background,
+	geneTables: geneTables,
+	clusters: clusters,
+	
+	enrichMethod: "ora",
+	mappedInputSize: 27,
+	standardId: "entrezgene",
+	volcano: {
+		labelTypes: ["geneSet", "description"],
+				dimensions: { width: 960, height: 500 },
+		autoPlaceLabels: true,
+		y: "FDR",
+
+
+		x: "enrichmentRatio",
+		xLabel: "log2 of enrichment ratio",
+		radius: "overlap",
+		color: "overlap",
+			tooltipContent: ["geneSet", "description", "enrichmentRatio", "FDR", "pValue", "overlap"]
+					
+	},
+	bar: {
+		dimensions: { width: 960, height: 300 },
+		tooltipContent: ["geneSet", "description", "enrichmentRatio", "FDR", "pValue", "overlap"],
+		
+		valueKey: "enrichmentRatio",
+		xLabel: "Enrichment ratio"
+	}
+})
+
+
+</script>
+<footer class="footer has-text-centered">
+<p>WebGestalt is currently developed and maintained by Yuxing Liao, Suhas Vasaikar, Zhiao Shi and Bing Zhang at the <a target="_new" href=http://www.zhang-lab.org> Zhang Lab</a>. Other people who have made significant contribution to the project include Jing Wang, Dexter Duncan, Stefan Kirov and Jay Snoddy.</p>
+<p><b>Funding credits:</b> NIH/NCI (U24 CA210954); Leidos (15X038); CPRIT (RR160027); NIH/NIAAA (U01 AA016662, U01 AA013512); NIH/NIDA (P01 DA015027); NIH/NIMH (P50 MH078028, P50 MH096972); NIH/NCI (U24 CA159988); NIH/NIGMS (R01 GM088822).
+</p>
+</footer></body>
+</html>

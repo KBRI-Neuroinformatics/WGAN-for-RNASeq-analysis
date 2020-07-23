@@ -1,0 +1,3 @@
+DEG results for two datasets
+
+We used the same RNA-seq packages (Trimmomatic, Hisat2, HTseq, DESeq2) as the case of GSE104775.
